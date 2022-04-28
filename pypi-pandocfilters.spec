@@ -4,7 +4,7 @@
 #
 Name     : pypi-pandocfilters
 Version  : 1.5.0
-Release  : 41
+Release  : 42
 URL      : https://files.pythonhosted.org/packages/62/42/c32476b110a2d25277be875b82b5669f2cdda7897c165bd22b78f366b3cb/pandocfilters-1.5.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/62/42/c32476b110a2d25277be875b82b5669f2cdda7897c165bd22b78f366b3cb/pandocfilters-1.5.0.tar.gz
 Summary  : Utilities for writing pandoc filters in python
@@ -14,9 +14,6 @@ Requires: pypi-pandocfilters-license = %{version}-%{release}
 Requires: pypi-pandocfilters-python = %{version}-%{release}
 Requires: pypi-pandocfilters-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
-Provides: pandocfilters
-Provides: pandocfilters-python
-Provides: pandocfilters-python3
 
 %description
 pandocfilters
@@ -59,7 +56,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641465537
+export SOURCE_DATE_EPOCH=1651167438
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
