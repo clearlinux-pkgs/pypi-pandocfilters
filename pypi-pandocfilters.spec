@@ -4,7 +4,7 @@
 #
 Name     : pypi-pandocfilters
 Version  : 1.5.0
-Release  : 50
+Release  : 51
 URL      : https://files.pythonhosted.org/packages/62/42/c32476b110a2d25277be875b82b5669f2cdda7897c165bd22b78f366b3cb/pandocfilters-1.5.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/62/42/c32476b110a2d25277be875b82b5669f2cdda7897c165bd22b78f366b3cb/pandocfilters-1.5.0.tar.gz
 Summary  : Utilities for writing pandoc filters in python
@@ -14,6 +14,9 @@ Requires: pypi-pandocfilters-license = %{version}-%{release}
 Requires: pypi-pandocfilters-python = %{version}-%{release}
 Requires: pypi-pandocfilters-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 pandocfilters
@@ -59,12 +62,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656392647
+export SOURCE_DATE_EPOCH=1672296771
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$FFLAGS -fno-lto "
-export FFLAGS="$FFLAGS -fno-lto "
-export CXXFLAGS="$CXXFLAGS -fno-lto "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -81,7 +84,7 @@ popd
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pypi-pandocfilters
-cp %{_builddir}/pandocfilters-1.5.0/LICENSE %{buildroot}/usr/share/package-licenses/pypi-pandocfilters/9990e0fc59b210f7995dbe22caeb082cae511080
+cp %{_builddir}/pandocfilters-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-pandocfilters/9990e0fc59b210f7995dbe22caeb082cae511080 || :
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
